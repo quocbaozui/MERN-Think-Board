@@ -1,17 +1,18 @@
-const express = require("express");
-const dotenv = require("dotenv");
+import express from "express";
+import dotenv from "dotenv";
+import notesRoutes from "./routes/notesRoutes.js";
+import connectDB from "./config/db.js";
 
-const notesRoutes = require("./routes/notesRoutes");
-const connectDB = require("./config/db");
-
+// access environment variable
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use("/api/notes", notesRoutes);
-
 connectDB();
+
+app.use(express.json());
+app.use("/api/notes", notesRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}..`);

@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-
-// Create a schema
+import mongoose from "mongoose";
 const noteSchema = mongoose.Schema(
   {
     title: {
@@ -12,10 +10,10 @@ const noteSchema = mongoose.Schema(
       required: true,
     },
   },
-  { timestamp: true } // createAt, updateAt
+  { timestamps: true } // // createAt, updateAt
 );
 
-// Create a model based off that noteSchema
+/** @type {import('mongoose').Model} */
 const Note = mongoose.model("Note", noteSchema);
 
-module.exports = Note;
+export default Note;
